@@ -9,7 +9,7 @@ It transforms raw blockchain data into a robust, normalized index ranging from 0
 
 ## Motivation
 
-Raw on-chain metrics such as transaction count or volume suffer from a lack of historical context and strong outlier sensitivity  
+Raw on-chain metrics such as transaction count or volume suffer from a lack of historical context and strong outlier sensitivity.
 
 WAI addresses these issues by measuring **relative activity** instead of absolute values and applying adaptive normalization and weighting.
 
@@ -51,7 +51,7 @@ WAI is a context indicator, not a standalone trading signal.
 
 - **Collector Service** – extracts and aggregates whale transactions  
 - **Backend API** – computes WAI, exposes history and parameters  
-- **Visualization Layer (optional)** – charts and dashboards  
+- **Visualization Layer** – charts and dashboards  
 
 All components are modular and containerized.
 
