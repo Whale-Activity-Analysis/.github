@@ -1,81 +1,73 @@
 # Whale Activity Index (WAI)
 
-## Overview
-
-The **Whale Activity Index (WAI)** is an open-source, on-chain indicator designed to quantify unusual activity of large Bitcoin market participants (“whales”).  
-It transforms raw blockchain data into a robust, normalized index ranging from 0 to 100, enabling consistent comparison across different market regimes.
+## Überblick
+Der **Whale Activity Index (WAI)** ist ein Open-Source-On-Chain-Indikator, der darauf ausgelegt ist, ungewöhnliche Aktivitäten großer Bitcoin-Marktteilnehmer („Wale“) zu quantifizieren.  
+Er transformiert rohe Blockchain-Daten in einen robusten, normalisierten Index von **0 bis 100** und ermöglicht so einen konsistenten Vergleich über verschiedene Marktphasen hinweg.
 
 ---
 
 ## Motivation
+Einfache On-Chain-Metriken wie die reine Transaktionsanzahl oder das Volumen leiden oft unter mangelndem historischem Kontext und einer hohen Anfälligkeit für Ausreißer.  
 
-Raw on-chain metrics such as transaction count or volume suffer from a lack of historical context and strong outlier sensitivity.
-
-WAI addresses these issues by measuring **relative activity** instead of absolute values and applying adaptive normalization and weighting.
+Der WAI löst diese Probleme, indem er die **relative Aktivität** anstelle von Absolutwerten misst und adaptive Normalisierungen sowie Gewichtungen anwendet.
 
 ---
 
-## Methodology (High-Level)
+## Methodik (High-Level)
 
-### Input Metrics
-- Whale Transaction Count
-- Whale Transaction Volume (BTC)  
-Aggregated on a daily basis.
+### Eingangsmetriken
+* **Whale Transaction Count:** Anzahl der Wal-Transaktionen.
+* **Whale Transaction Volume (BTC):** Volumen der Wal-Transaktionen in BTC.  
+Die Daten werden auf täglicher Basis aggregiert.
 
-### Adaptive Normalization
-Metrics are normalized against a rolling baseline (SMA, EWMA, or Median) to account for long-term trends and structural shifts.
+### Adaptive Normalisierung
+Die Metriken werden gegen eine rollierende Baseline (SMA, EWMA oder Median) normalisiert, um langfristige Trends und strukturelle Marktveränderungen zu berücksichtigen.
 
-### Volatility-Aware Weighting
-Metric weights are dynamically adjusted based on observed volatility, reducing noise from unstable inputs (e.g. volume spikes).
+### Volatilitätsadaptive Gewichtung
+Die Gewichtung der einzelnen Metriken wird dynamisch an die beobachtete Volatilität angepasst. Dies reduziert das Rauschen durch instabile Eingabedaten (z. B. extreme Volumenspitzen).
 
-### Historical Scaling
-The combined activity score is ranked using a rolling percentile window and linearly scaled to [0, 100], ensuring regime-independent interpretation.
+### Historische Skalierung
+Der kombinierte Aktivitätswert wird über ein rollierendes Perzentil-Fenster eingestuft und linear auf den Bereich [0, 100] skaliert. Dies gewährleistet eine interpretationsfähige Kennzahl, die unabhängig vom aktuellen Marktregime funktioniert.
 
 ---
 
 ## Interpretation
 
-| WAI Range | Interpretation |
-|---------|----------------|
-| 0–20 | Very low whale activity |
-| 20–40 | Below average |
-| 40–60 | Normal range |
-| 60–80 | Elevated activity |
-| 80–100 | Extreme, rare activity |
+| WAI Bereich | Interpretation |
+| :--- | :--- |
+| **0–20** | Sehr geringe Wal-Aktivität |
+| **20–40** | Unterdurchschnittlich |
+| **40–60** | Normalbereich |
+| **60–80** | Erhöhte Aktivität |
+| **80–100** | Extreme, seltene Aktivität |
 
-WAI is a context indicator, not a standalone trading signal.
-
----
-
-## Architecture (Conceptual)
-
-- **Collector Service** – extracts and aggregates whale transactions  
-- **Backend API** – computes WAI, exposes history and parameters  
-- **Visualization Layer** – charts and dashboards  
-
-All components are modular and containerized.
+> **Hinweis:** Der WAI ist ein Kontext-Indikator, kein eigenständiges Handelssignal.
 
 ---
 
-## Scope & Limitations
+## Architektur (Konzeptuell)
+* **Collector Service:** Extrahiert und aggregiert Wal-Transaktionen von der Blockchain.
+* **Backend API:** Berechnet den WAI, verwaltet die Historie und stellt Parameter bereit.
+* **Visualization Layer:** Dashboards und Charts zur grafischen Aufbereitung.
 
-- Measures activity, not price direction  
-- No predictive guarantees  
-- Parameter choices are empirically motivated  
-- Reduced statistical power in early data windows  
+Alle Komponenten sind modular aufgebaut und containerisiert.
 
-These limitations are explicitly documented.
+---
+
+## Umfang & Grenzen
+* Misst die **Aktivität**, nicht die Preisrichtung.
+* Keine Vorhersagegarantien.
+* Die Parameterwahl ist empirisch motiviert.
+* Reduzierte statistische Aussagekraft in frühen Datenfenstern.
 
 ---
 
 ## Open Source
-
-WAI is fully open source and designed for auditability, extension, and academic or practical use.
+Der WAI ist vollständig Open Source und auf Auditierbarkeit, Erweiterbarkeit sowie für den akademischen und praktischen Einsatz ausgelegt.
 
 ---
 
 ## Status
-
-- Index specification: stable  
-- Backend: operational  
-- Validation & extensions: ongoing
+* **Index-Spezifikation:** Stabil
+* **Backend:** Einsatzbereit
+* **Validierung & Erweiterungen:** Laufend
